@@ -44,6 +44,34 @@ export default class BigDouble {
     return true;
   }
 
+  add(mantissa, exponent) {
+    if (
+      this.exponent - exponent > 0 &&
+      this.exponent - exponent < precision
+    ) {
+      this.mantissa +=
+      mantissa / Math.pow(10, this.exponent - exponent);
+    } else if (this.exponent - exponent < 0) {
+      this.exponent = exponent;
+      if (this.exponent - exponent > -precision) {
+        this.mantissa =
+          this.mantissa / Math.pow(10, exponent - this.exponent);
+      } else {
+        this.mantissa = mantissa;
+      }
+    } else if (this.exponent - exponent === 0) {
+      this.mantissa += mantissa;
+    } else {
+      console.log("[BigDouble | add] Could not add " + mantissa + "e" + exponent);
+    }
+
+    while (this.mantissa >= 10) {
+      this.exponent += 1;
+      this.mantissa -= 10;
+    }
+    return true;
+  }
+
   subtract(other) {
     if (typeof other != BigDouble) {
       console.log("[BigDouble | subtract] Argument must be of type BigDouble");
