@@ -39,7 +39,7 @@ export default class BigDouble {
 
     while (this.mantissa >= 10) {
       this.exponent += 1;
-      this.mantissa -= 10;
+      this.mantissa /= 10;
     }
     return true;
   }
@@ -64,7 +64,7 @@ export default class BigDouble {
 
     while (this.mantissa >= 10) {
       this.exponent += 1;
-      this.mantissa -= 10;
+      this.mantissa /= 10;
     }
     return true;
   }
@@ -100,8 +100,13 @@ export default class BigDouble {
 
   toString() {
     if (this.exponent < 2) {
-      return this.mantissa * Math.pow(10, this.exponent);
+      return (this.mantissa * Math.pow(10, this.exponent)).toFixed(2);
+      console.log(this.mantissa + "e" + this.exponent);
     }
-    return this.mantissa + "e" + this.exponent;
+    return Math.floor(this.mantissa * 100) / 100 + "e" + this.exponent;
+  }
+
+  log() {
+    console.log("Man: " + this.mantissa + " Exp:" + this.exponent);
   }
 }

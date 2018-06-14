@@ -13,7 +13,8 @@ export default class App extends Component {
   }
 
   handleClick() {
-    this.d1.addCount(2,0);
+    this.d1.addCount(2.32,0);
+    this.d1.log();
     this.setState({ dirt: 1 });
   }
 
