@@ -24,8 +24,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development",
     "transpile": "babel src -d docs --copy-files",
-    "build": "webpack --mode development",
-    "deploy": "gh-pages -d /docs",
+    "build": "webpack --mode production",
+    "deploy": "npm run build && gh-pages -d /docs",
     "publish-demo": "npm run build && npm run deploy"
   },
   "repository": {
