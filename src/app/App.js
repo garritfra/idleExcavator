@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import BigDouble from "../model/BigDouble";
-import Game from "../app/game/Game";
+import Game from "../app/game/GameComponent";
 
 export default class App extends Component {
   constructor(props) {

@@ -1,40 +1,31 @@
-import React, { Component } from "react";
-import { Button, Container } from "reactstrap";
 import BigDouble from "../../model/BigDouble";
 
-export default class Game extends Component {
-  constructor(props) {
-    super(props);
-    this.d1 = new BigDouble(2, 0);
-    this.props = props;
-    this.state = { dirt: new BigDouble(2, 0) };
-    console.log(this.state);
+export default class Game {
+  constructor(tickRate) {
+    this.dirt = new BigDouble(1, 0);
+    this.autoPercentage = 1.0;
+    this.clickerPercentage = 1.0;
+    this.tickRate = tickRate;
+    this.tick = this.tick.bind(this);
   }
 
-  componentDidMount() {
-    setInterval(this.updateDirt.bind(this), 33);
+  getTickRate() {
+    return this.tickRate;
   }
 
-  handleClick() {
-    this.d1.addCount(1, 0);
-    this.forceUpdate();
+  getDirt() {
+    return this.dirt;
   }
 
-  updateDirt() {
-    this.d1.addCount(1, 0);
-    this.forceUpdate();
+  click() {
+    this.addDirt(this.clickerPercentage);
   }
 
-  render() {
-    return (
-      <Container>
-        <span>
-          <Button onClick={this.handleClick.bind(this)}>Click Me!</Button>
-        </span>
-        <span>
-          <h1>{this.d1.toString()}</h1>
-        </span>
-      </Container>
-    );
+  tick() {
+    this.dirt.addCount(this.autoPercentage, 0);
+  }
+
+  addDirt(amount) {
+    this.dirt.addCount(amount, 0);
   }
 }
