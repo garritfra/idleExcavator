@@ -72,6 +72,9 @@ class BigDouble {
     }
 
     toString() {
+        if ( this.exponent < 2 ) {
+            return this.mantissa * Math.pow(10, this.exponent);
+        }
         return this.mantissa + "e" + this.exponent;
     }
 
