@@ -9,8 +9,7 @@ export default class App extends Component {
   }
 
   handleClick() {
-    const newDirt = this.state.dirt + 1;
-    this.setState({ dirt: newDirt });
+    this.setState({ dirt: this.state.dirt + 1 });
   }
 
   render() {
