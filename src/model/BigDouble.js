@@ -1,4 +1,4 @@
-const precision = 7;
+const precision = 10;
 
 export default class BigDouble {
   constructor(mantissa, exponent) {
@@ -87,15 +87,30 @@ export default class BigDouble {
       if (this.mantissa >= other.mantissa) {
         this.mantissa -= other.mantissa;
       }
+      else {
+        return false;
+      }
     } else {
       console.log("[BigDouble | subtract] Could not subtract " + other);
     }
 
-    while (this.mantissa < 0) {
+    while (this.mantissa < 1 && this.mantissa != 0) {
       this.exponent -= 1;
       this.mantissa *= 10;
     }
     return true;
+  }
+
+  times(mult) {
+    this.mantissa *= mult;
+    while (this.mantissa < 1 && this.mantissa != 0) {
+      this.exponent -= 1;
+      this.mantissa *= 10;
+    }
+    while (this.mantissa >= 10) {
+      this.exponent += 1;
+      this.mantissa /= 10;
+    }
   }
 
   toString() {

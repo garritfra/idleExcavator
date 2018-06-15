@@ -41,6 +41,9 @@ export default class DirtComponent extends Component {
             .getDirt()
             .toString()}
         </h1>
+        <h4 className="text-center">
+          {Game.getInstance().autoPercentage.toFixed(2) + " dirt/second"}
+        </h4>
       </Jumbotron>
     );
   }
