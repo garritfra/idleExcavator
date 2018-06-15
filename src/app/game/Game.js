@@ -11,7 +11,7 @@ export default class Game {
     this.tickRate = tickRate;
     this.tick = this.tick.bind(this);
     this.upgradesList = {
-      worker: new AutoUpgrade(10, 0.1)
+      worker: new AutoUpgrade(new BigDouble(1,1), 0.1)
     };
   }
 
@@ -43,7 +43,9 @@ export default class Game {
   }
 
   applyAutoUpgrade(upgrade) {
-    this.autoPercentage += upgrade.getPercentage();
-    this.addDirt(-upgrade.getCost());
+    if ( this.dirt.subtract(upgrade.getCost()) )
+    {
+      this.autoPercentage += upgrade.getPercentage();
+    }
   }
 }

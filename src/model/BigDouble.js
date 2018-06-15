@@ -12,7 +12,7 @@ export default class BigDouble {
   }
 
   add(other) {
-    if (typeof other != BigDouble) {
+    if (!(other instanceof BigDouble)) {
       console.log("[BigDouble | add] Argument must be of type BigDouble");
       return false;
     }
@@ -70,8 +70,8 @@ export default class BigDouble {
   }
 
   subtract(other) {
-    if (typeof other != BigDouble) {
-      console.log("[BigDouble | subtract] Argument must be of type BigDouble");
+    if (!(other instanceof BigDouble)) {
+      console.log("[BigDouble | subtract] Argument must be of type BigDouble but is " + other.constructor.name);
       return false;
     }
 
