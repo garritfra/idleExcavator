@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Button } from "reactstrap";
+import { Jumbotron, Button } from "reactstrap";
 import Game from "../Game";
 
 export default class DirtComponent extends Component {
@@ -26,14 +26,22 @@ export default class DirtComponent extends Component {
 
   render() {
     return (
-      <Container>
-        <Button onClick={this.handleClick.bind(this)}>Click Me!</Button>
-        <h1>
+      <Jumbotron>
+        <Button
+          color="primary"
+          size="lg"
+          height="100%"
+          className="float-left"
+          onClick={this.handleClick.bind(this)}
+        >
+          Click Me!
+        </Button>
+        <h1 className="text-center">
           {Game.getInstance()
             .getDirt()
             .toString()}
         </h1>
-      </Container>
+      </Jumbotron>
     );
   }
 }

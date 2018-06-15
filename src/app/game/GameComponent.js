@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Button, Container } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import BigDouble from "../../model/BigDouble";
 import Game from "./Game";
 import DirtComponent from "./dirtComponent/DirtComponent";
+import UpgradesComponent from "./upgradesComponent/UpgradesComponent";
 
 export default class GameComponent extends Component {
   constructor(props) {
@@ -14,7 +15,14 @@ export default class GameComponent extends Component {
   render() {
     return (
       <Container>
-        <DirtComponent />
+        <Row>
+          <Col>
+            <DirtComponent />
+          </Col>
+          <Col>
+            <UpgradesComponent />
+          </Col>
+        </Row>
       </Container>
     );
   }
