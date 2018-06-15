@@ -1,5 +1,7 @@
 import BigDouble from "../../model/BigDouble";
 
+let instance = null;
+
 export default class Game {
   constructor(tickRate) {
     this.dirt = new BigDouble(1, 0);
@@ -7,6 +9,13 @@ export default class Game {
     this.clickerPercentage = 1.0;
     this.tickRate = tickRate;
     this.tick = this.tick.bind(this);
+  }
+
+  static getInstance() {
+    if (!instance) {
+      instance = new this(100);
+    }
+    return instance;
   }
 
   getTickRate() {

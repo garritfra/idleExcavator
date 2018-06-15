@@ -8,13 +8,13 @@ export default class GameComponent extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.game = new Game(1000);
+    this.game = Game.getInstance();
   }
 
   render() {
     return (
       <Container>
-        <DirtComponent game={this.game} />
+        <DirtComponent />
       </Container>
     );
   }

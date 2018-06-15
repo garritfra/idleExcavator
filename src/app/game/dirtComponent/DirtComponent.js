@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
+import Game from "../Game";
 
 export default class DirtComponent extends Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.game = this.props.game;
   }
 
   componentDidMount() {
-    const tickRate = this.game.getTickRate();
-    setInterval(this.game.tick, tickRate);
+    const tickRate = Game.getInstance().getTickRate();
+    setInterval(Game.getInstance().tick, tickRate);
     setInterval(this.forceUpdate.bind(this), tickRate);
   }
 
   handleClick() {
-    this.game.click();
+    Game.getInstance().click();
     this.forceUpdate();
   }
 
@@ -28,7 +28,11 @@ export default class DirtComponent extends Component {
     return (
       <Container>
         <Button onClick={this.handleClick.bind(this)}>Click Me!</Button>
-        <h1>{this.game.getDirt().toString()}</h1>
+        <h1>
+          {Game.getInstance()
+            .getDirt()
+            .toString()}
+        </h1>
       </Container>
     );
   }
