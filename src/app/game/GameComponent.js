@@ -12,7 +12,14 @@ export default class GameComponent extends Component {
 
   handleSave() {
     document.cookie = "game= " + JSON.stringify(Game.getInstance());
-    alert("Game has been saved");
+  }
+
+  handleLoad() {
+    const cookie = document.cookie.match(
+      "(^|;) ?" + "game" + "=([^;]*)(;|$)"
+    )[2];
+    const newGame = JSON.parse(cookie);
+    Game.getInstance().loadGame(newGame);
   }
 
   render() {
@@ -21,6 +28,7 @@ export default class GameComponent extends Component {
         <Row>
           <Col>
             <Button onClick={this.handleSave}>Save</Button>
+            <Button onClick={this.handleLoad}>Load</Button>
             <DirtComponent />
           </Col>
           <Col>

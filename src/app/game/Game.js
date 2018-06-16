@@ -23,6 +23,13 @@ export default class Game {
     return instance;
   }
 
+  loadGame(newGame) {
+    for (var property in instance) {
+      instance[property] = newGame[property];
+    }
+    console.log(instance);
+  }
+
   getUpgradeList() {
     return this.upgradesList;
   }
