@@ -12,10 +12,10 @@ export default class Game {
     this.clickerPercentage = 1.0;
     this.tickRate = tickRate;
     this.tick = this.tick.bind(this);
-    this.upgradesList = {
-      worker: new AutoUpgrade(new BigDouble(1,1), new BigDouble(0.1,0)),
-      wheelbarrow: new AutoUpgrade(new BigDouble(1,2), new BigDouble(0.5,0))
-    };
+    this.upgradesList = [
+      new AutoUpgrade("worker", new BigDouble(1,1), new BigDouble(0.1,0)),
+      new AutoUpgrade("wheelbarrow", new BigDouble(1,2), new BigDouble(0.5,0))
+    ];
   }
 
   static getInstance() {
@@ -23,6 +23,10 @@ export default class Game {
       instance = new this(100);
     }
     return instance;
+  }
+
+  getUpgradeList() {
+    return this.upgradesList;
   }
 
   getTickRate() {
@@ -47,9 +51,8 @@ export default class Game {
   }
 
   applyAutoUpgrade(upgrade) {
-    if ( this.dirt.subtract(upgrade.getCost()) )
+    if ( this.dirt.subtract(upgrade.cost) )
     {
-      
       upgrade.buy();
       this.autoPercentage.add(this.upgradesList.worker.getPercentage().getTimes(this.upgradesList.worker.amountBought,0));
       this.autoPercentage.add(this.upgradesList.wheelbarrow.getPercentage().getTimes(this.upgradesList.wheelbarrow.amountBought,0));

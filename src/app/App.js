@@ -9,7 +9,6 @@ export default class App extends Component {
     this.props = props;
     this.d1 = new BigDouble(1, 0);
     this.state = { dirt: new BigDouble(2, 0) };
-    console.log(this.state);
   }
 
   handleClick() {
