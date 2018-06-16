@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
 import BigDouble from "../model/BigDouble";
-import Game from "../app/game/GameComponent";
+import GameComponent from "../app/game/GameComponent";
+import Header from "../app/header/Header";
 
 export default class App extends Component {
   constructor(props) {
@@ -20,7 +20,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Game />
+        <Header />
+        <GameComponent />
       </div>
     );
   }
