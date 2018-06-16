@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
 import Game from "../Game";
+import UpgradeComponent from "./upgradeComponent/UpgradeComponent";
 
 export default class UpgradesListComponent extends Component {
   handleClick(worker) {
@@ -8,11 +9,16 @@ export default class UpgradesListComponent extends Component {
   }
 
   render() {
+    const upgradeComponents = Game.getInstance()
+      .getUpgradeList()
+      .map(upgrade => {
+        return <UpgradeComponent upgrade={upgrade} />;
+      });
+
     return (
       <Container>
         <h1>Upgrades</h1>
-        <Button onClick={() => this.handleClick(Game.getInstance().upgradesList.worker)}>Buy Worker</Button>
-        <Button onClick={() => this.handleClick(Game.getInstance().upgradesList.wheelbarrow)}>Buy Wheelbarrow</Button>
+        <div>{upgradeComponents}</div>
       </Container>
     );
   }
