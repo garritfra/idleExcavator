@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Jumbotron, Button } from "reactstrap";
 import Game from "../Game";
+import BigDouble from "../../../model/BigDouble";
 
 export default class DirtComponent extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class DirtComponent extends Component {
             .toString()}
         </h1>
         <h4 className="text-center">
-          {Game.getInstance().autoPercentage.toFixed(2) + " dirt/second"}
+          {Game.getInstance().autoPercentage.getTimes(1000/Game.getInstance().getTickRate(), 0).toString() + " dirt/second"}
         </h4>
       </Jumbotron>
     );

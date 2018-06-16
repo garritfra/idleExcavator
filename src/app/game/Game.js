@@ -6,13 +6,15 @@ let instance = null;
 export default class Game {
   constructor(tickRate) {
     this.dirt = new BigDouble(1, 0);
-    this.autoPercentage = 0;
+    this.autoPercentage = new BigDouble(1,0);
+    console.log(this.autoPercentage);
+    console.log(this.dirt);
     this.clickerPercentage = 1.0;
     this.tickRate = tickRate;
     this.tick = this.tick.bind(this);
     this.upgradesList = {
-      worker: new AutoUpgrade(new BigDouble(1,1), 0.1),
-      wheelbarrow: new AutoUpgrade(new BigDouble(1,2), 0.5)
+      worker: new AutoUpgrade(new BigDouble(1,1), new BigDouble(0.1,0)),
+      wheelbarrow: new AutoUpgrade(new BigDouble(1,2), new BigDouble(0.5,0))
     };
   }
 
@@ -36,7 +38,8 @@ export default class Game {
   }
 
   tick() {
-    this.dirt.addCount(this.autoPercentage, 0);
+    console.log( this.autoPercentage.getTimes(1000/Game.getInstance().getTickRate(), 0) );
+    this.dirt.add(this.autoPercentage);
   }
 
   addDirt(amount) {
@@ -46,8 +49,10 @@ export default class Game {
   applyAutoUpgrade(upgrade) {
     if ( this.dirt.subtract(upgrade.getCost()) )
     {
+      
       upgrade.buy();
-      this.autoPercentage += upgrade.getPercentage();
+      this.autoPercentage.add(this.upgradesList.worker.getPercentage().getTimes(this.upgradesList.worker.amountBought,0));
+      this.autoPercentage.add(this.upgradesList.wheelbarrow.getPercentage().getTimes(this.upgradesList.wheelbarrow.amountBought,0));
     }
   }
 }

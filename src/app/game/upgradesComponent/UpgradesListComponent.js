@@ -4,6 +4,7 @@ import Game from "../Game";
 
 export default class UpgradesListComponent extends Component {
   handleClick(worker) {
+    console.log(worker);
     Game.getInstance().applyAutoUpgrade(worker);
   }
 

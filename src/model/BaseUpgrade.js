@@ -1,3 +1,5 @@
+import BigDouble from "./BigDouble";
+
 export default class BaseUpgrade {
   constructor(cost) {
     this.cost = cost;
@@ -10,8 +12,9 @@ export default class BaseUpgrade {
   }
 
   buy() {
-    this.cost.times(1.5);
-    console.log(this.cost);
+    console.log(this);
     this.amountBought++;
+    if ( this.amountBought == 1) return;
+    this.cost.times(1.5,0);
   }
 }
