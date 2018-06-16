@@ -22,7 +22,7 @@ export default class UpgradeComponent extends Component {
   render() {
     return (
       <ListGroupItem>
-        <ListGroupItemHeading>{this.props.upgrade.name}</ListGroupItemHeading>
+        <ListGroupItemHeading>{this.props.upgrade.name + " x" + this.props.upgrade.amountBought}</ListGroupItemHeading>
         <ListGroupItemText>
           {this.upgrade.cost.toString()} dirt
         </ListGroupItemText>

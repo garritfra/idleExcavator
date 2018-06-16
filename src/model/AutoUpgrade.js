@@ -8,10 +8,6 @@ export default class AutoUpgrade extends BaseUpgrade {
   }
 
   getPercentage() {
-    if ( this.amountBought % 10 == 0 && this.amountBought != 0)
-    {
-      this.percentage.times(2,0);
-    }
     return this.percentage;
   }
 }

@@ -42,7 +42,7 @@ export default class Game {
   }
 
   tick() {
-    console.log( this.autoPercentage.getTimes(1000/Game.getInstance().getTickRate(), 0) );
+    //console.log( this.autoPercentage.getTimes(1000/Game.getInstance().getTickRate(), 0) );
     this.dirt.add(this.autoPercentage);
   }
 
