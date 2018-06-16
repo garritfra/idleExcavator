@@ -54,8 +54,8 @@ export default class Game {
     if ( this.dirt.subtract(upgrade.cost) )
     {
       upgrade.buy();
-      this.autoPercentage.add(this.upgradesList.worker.getPercentage().getTimes(this.upgradesList.worker.amountBought,0));
-      this.autoPercentage.add(this.upgradesList.wheelbarrow.getPercentage().getTimes(this.upgradesList.wheelbarrow.amountBought,0));
+      this.autoPercentage.add(this.upgradesList[0].getPercentage().getTimes(this.upgradesList[0].amountBought,0));
+      this.autoPercentage.add(this.upgradesList[1].getPercentage().getTimes(this.upgradesList[1].amountBought,0));
     }
   }
 }
