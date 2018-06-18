@@ -1,5 +1,5 @@
 import BigDouble from "./BigDouble";
-import AutoUpgrade from "./AutoUpgrade";
+import { AutoUpgrades } from "../model/Upgrades";
 
 let instance = null;
 
@@ -7,15 +7,10 @@ export default class Game {
   constructor(tickRate) {
     this.dirt = new BigDouble(1, 0);
     this.autoPercentage = new BigDouble(1, 0);
-    console.log(this.autoPercentage);
-    console.log(this.dirt);
     this.clickerPercentage = 1.0;
     this.tickRate = tickRate;
     this.tick = this.tick.bind(this);
-    this.upgradesList = [
-      new AutoUpgrade("worker", new BigDouble(1, 1), new BigDouble(0.1, 0)),
-      new AutoUpgrade("wheelbarrow", new BigDouble(1, 2), new BigDouble(0.5, 0))
-    ];
+    this.upgradesList = AutoUpgrades;
   }
 
   static getInstance() {
