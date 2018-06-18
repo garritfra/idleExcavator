@@ -27,7 +27,7 @@ export default class DirtComponent extends Component {
 
   render() {
     return (
-      <Jumbotron>
+      <div>
         <h1 className="text-center">
           {Game.getInstance()
             .getDirt()
@@ -47,7 +47,7 @@ export default class DirtComponent extends Component {
         >
           Dig
         </Button>
-      </Jumbotron>
+      </div>
     );
   }
 }
