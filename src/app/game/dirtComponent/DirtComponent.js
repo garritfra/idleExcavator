@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Jumbotron, Button } from "reactstrap";
+import { Container, Button } from "reactstrap";
 import Game from "../../../model/Game";
 import "./DirtComponent.scss";
 
@@ -27,7 +27,7 @@ export default class DirtComponent extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h1 className="text-center">
           {Game.getInstance()
             .getDirt()
@@ -47,7 +47,7 @@ export default class DirtComponent extends Component {
         >
           Dig
         </Button>
-      </div>
+      </Container>
     );
   }
 }
