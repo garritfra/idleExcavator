@@ -2,3 +2,10 @@
 
 **proposals**: https://docs.google.com/document/d/1CtZuguvS38nWZdZDhfnV5_iAo43Fox4TI5Sn7sbU6Vc/edit
 **UI** https://aggie.io/kyd9ycc2
+
+## Possible Upgrades
+
+- Shovel
+- Laser
+- Antimatter Gun
+-
