@@ -5,8 +5,8 @@ let instance = null;
 
 export default class Game {
   constructor(tickRate) {
-    this.dirt = new BigDouble(1, 0);
-    this.autoPercentage = new BigDouble(1, 0);
+    this.dirt = new BigDouble(0, 0);
+    this.autoPercentage = new BigDouble(0, 0);
     this.clickerPercentage = 1.0;
     this.tickRate = tickRate;
     this.tick = this.tick.bind(this);
