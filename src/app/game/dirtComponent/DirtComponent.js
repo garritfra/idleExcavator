@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Jumbotron, Button } from "reactstrap";
-import Game from "../Game";
+import Game from "../../../model/Game";
 
 export default class DirtComponent extends Component {
   constructor(props) {

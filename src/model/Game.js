@@ -1,5 +1,5 @@
-import BigDouble from "../../model/BigDouble";
-import AutoUpgrade from "../../model/AutoUpgrade";
+import BigDouble from "./BigDouble";
+import AutoUpgrade from "./AutoUpgrade";
 
 let instance = null;
 

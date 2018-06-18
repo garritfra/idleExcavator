@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container, Button } from "reactstrap";
-import Game from "../Game";
+import Game from "../../../model/Game";
 import UpgradeComponent from "./upgradeComponent/UpgradeComponent";
 
 export default class UpgradesListComponent extends Component {

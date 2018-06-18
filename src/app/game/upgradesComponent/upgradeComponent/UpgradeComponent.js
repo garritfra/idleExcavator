@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Game from "../../Game";
+import Game from "../../../../model/Game";
 import {
   ListGroupItem,
   ListGroupItemHeading,
@@ -22,7 +22,9 @@ export default class UpgradeComponent extends Component {
   render() {
     return (
       <ListGroupItem>
-        <ListGroupItemHeading>{this.props.upgrade.name + " x" + this.props.upgrade.amountBought}</ListGroupItemHeading>
+        <ListGroupItemHeading>
+          {this.props.upgrade.name + " x" + this.props.upgrade.amountBought}
+        </ListGroupItemHeading>
         <ListGroupItemText>
           {this.upgrade.cost.toString()} dirt
         </ListGroupItemText>
