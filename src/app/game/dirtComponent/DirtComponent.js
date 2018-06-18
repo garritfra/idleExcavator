@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Jumbotron, Button } from "reactstrap";
 import Game from "../../../model/Game";
+import "./DirtComponent.scss";
 
 export default class DirtComponent extends Component {
   constructor(props) {
@@ -27,15 +28,6 @@ export default class DirtComponent extends Component {
   render() {
     return (
       <Jumbotron>
-        <Button
-          color="primary"
-          size="lg"
-          height="100%"
-          className="float-left shadow-none"
-          onClick={this.handleClick.bind(this)}
-        >
-          Dig
-        </Button>
         <h1 className="text-center">
           {Game.getInstance()
             .getDirt()
@@ -46,6 +38,15 @@ export default class DirtComponent extends Component {
             .autoPercentage.getTimes(1000 / Game.getInstance().getTickRate(), 0)
             .toString() + " dirt/second"}
         </h4>
+        <Button
+          color="primary"
+          size="lg"
+          height="100%"
+          className="float-left shadow-none"
+          onClick={this.handleClick.bind(this)}
+        >
+          Dig
+        </Button>
       </Jumbotron>
     );
   }
