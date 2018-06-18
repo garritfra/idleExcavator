@@ -48,15 +48,24 @@ export default class Game {
   applyAutoUpgrade(upgrade) {
     if (this.dirt.subtract(upgrade.cost)) {
       upgrade.buy();
+      this.autoPercentage.set(new BigDouble(0,0));
+      if (this.upgradesList[0].amountBought > 0)
       this.autoPercentage.add(
         this.upgradesList[0]
           .getPercentage()
           .getTimes(this.upgradesList[0].amountBought, 0)
       );
+      if (this.upgradesList[1].amountBought > 0)
       this.autoPercentage.add(
         this.upgradesList[1]
           .getPercentage()
           .getTimes(this.upgradesList[1].amountBought, 0)
+      );
+      if (this.upgradesList[2].amountBought > 0)
+      this.autoPercentage.add(
+        this.upgradesList[2]
+          .getPercentage()
+          .getTimes(this.upgradesList[2].amountBought, 0)
       );
     }
   }

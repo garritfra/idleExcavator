@@ -19,6 +19,11 @@ export default class BigDouble {
     return this;
   }
 
+  set(other) {
+    this.mantissa = other.mantissa;
+    this.exponent = other.exponent;
+  }
+
   add(other) {
     if (!(other instanceof BigDouble)) {
       console.log("[BigDouble | add] Argument must be of type BigDouble");
