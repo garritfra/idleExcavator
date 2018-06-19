@@ -1,13 +1,15 @@
 const precision = 10;
 
 export default class BigDouble {
-  constructor(mantissa, exponent) {
+  mantissa: number;
+  exponent: number;
+  constructor(mantissa: number, exponent: number) {
     this.mantissa = mantissa;
     this.exponent = exponent;
     this.normalize();
   }
 
-  normalize() {
+  private normalize() {
     while (this.mantissa < 1 && this.mantissa != 0) {
       this.exponent -= 1;
       this.mantissa *= 10;
@@ -19,34 +21,34 @@ export default class BigDouble {
     return this;
   }
 
-  set(other) {
-    this.mantissa = other.mantissa;
-    this.exponent = other.exponent;
+  set(newDouble: BigDouble): void {
+    this.mantissa = newDouble.mantissa;
+    this.exponent = newDouble.exponent;
   }
 
-  add(other) {
-    if (!(other instanceof BigDouble)) {
+  add(newDouble: BigDouble): boolean {
+    if (!(newDouble instanceof BigDouble)) {
       console.log("[BigDouble | add] Argument must be of type BigDouble");
       return false;
     }
     if (
-      this.exponent - other.exponent > 0 &&
-      this.exponent - other.exponent < precision
+      this.exponent - newDouble.exponent > 0 &&
+      this.exponent - newDouble.exponent < precision
     ) {
       this.mantissa +=
-        other.mantissa / Math.pow(10, this.exponent - other.exponent);
-    } else if (this.exponent - other.exponent < 0) {
-      this.exponent = other.exponent;
-      if (this.exponent - other.exponent > -precision) {
+        newDouble.mantissa / Math.pow(10, this.exponent - newDouble.exponent);
+    } else if (this.exponent - newDouble.exponent < 0) {
+      this.exponent = newDouble.exponent;
+      if (this.exponent - newDouble.exponent > -precision) {
         this.mantissa =
-          this.mantissa / Math.pow(10, other.exponent - this.exponent);
+          this.mantissa / Math.pow(10, newDouble.exponent - this.exponent);
       } else {
-        this.mantissa = other.mantissa;
+        this.mantissa = newDouble.mantissa;
       }
-    } else if (this.exponent - other.exponent === 0) {
-      this.mantissa += other.mantissa;
+    } else if (this.exponent - newDouble.exponent === 0) {
+      this.mantissa += newDouble.mantissa;
     } else {
-      console.log("[BigDouble | add] Could not add " + other);
+      console.log("[BigDouble | add] Could not add " + newDouble);
       return false;
     }
 
@@ -54,7 +56,7 @@ export default class BigDouble {
     return true;
   }
 
-  addCount(mantissa, exponent) {
+  addCount(mantissa: number, exponent: number): boolean {
     if (this.exponent - exponent > 0 && this.exponent - exponent < precision) {
       this.mantissa += mantissa / Math.pow(10, this.exponent - exponent);
     } else if (this.exponent - exponent < 0) {
@@ -77,40 +79,45 @@ export default class BigDouble {
     return true;
   }
 
-  subtract(other) {
-    if (!(other instanceof BigDouble)) {
-      console.log("[BigDouble | subtract] Argument must be of type BigDouble but is " + other.constructor.name);
+  subtract(newDouble: BigDouble): boolean {
+    if (!(newDouble instanceof BigDouble)) {
+      console.log(
+        "[BigDouble | subtract] Argument must be of type BigDouble but is " +
+          typeof newDouble
+      );
       return false;
     }
 
     if (
-      this.exponent - other.exponent > 0 &&
-      this.exponent - other.exponent < precision
+      this.exponent - newDouble.exponent > 0 &&
+      this.exponent - newDouble.exponent < precision
     ) {
       this.mantissa -=
-        other.mantissa / Math.pow(10, this.exponent - other.exponent);
-    } else if (this.exponent - other.exponent < 0) {
+        newDouble.mantissa / Math.pow(10, this.exponent - newDouble.exponent);
+    } else if (this.exponent - newDouble.exponent < 0) {
       return false;
-    } else if (this.exponent - other.exponent === 0) {
-      if (this.mantissa >= other.mantissa) {
-        this.mantissa -= other.mantissa;
-      }
-      else {
+    } else if (this.exponent - newDouble.exponent === 0) {
+      if (this.mantissa >= newDouble.mantissa) {
+        this.mantissa -= newDouble.mantissa;
+      } else {
         return false;
       }
     } else {
-      console.log("[BigDouble | subtract] Could not subtract " + other);
+      console.log("[BigDouble | subtract] Could not subtract " + newDouble);
     }
 
     this.normalize();
     return true;
   }
 
-  getTimes(mantissa, exponent) {
-    return new BigDouble(this.mantissa * mantissa, this.exponent + exponent).normalize();
+  getTimes(mantissa: number, exponent: number): BigDouble {
+    return new BigDouble(
+      this.mantissa * mantissa,
+      this.exponent + exponent
+    ).normalize();
   }
 
-  times(mantissa, exponent) {
+  times(mantissa: number, exponent: number) {
     this.mantissa *= mantissa;
     this.exponent += exponent;
     this.normalize();
@@ -118,7 +125,7 @@ export default class BigDouble {
     return this;
   }
 
-  toString() {
+  toString(): string {
     if (this.exponent < 2) {
       //console.log(this.mantissa + "e" + this.exponent);
       return (this.mantissa * Math.pow(10, this.exponent)).toFixed(2);
@@ -126,9 +133,7 @@ export default class BigDouble {
     return this.mantissa.toFixed(2) + "e" + this.exponent;
   }
 
-  log() {
+  log(): void {
     console.log(this);
   }
-
-  
 }
