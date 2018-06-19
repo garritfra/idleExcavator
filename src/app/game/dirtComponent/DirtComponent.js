@@ -25,6 +25,14 @@ export default class DirtComponent extends Component {
     this.forceUpdate();
   }
 
+  dirtPerSecond() {
+    return (
+      Game.getInstance()
+        .autoPercentage.getTimes(1000 / Game.getInstance().getTickRate(), 0)
+        .toString() + " dirt/second"
+    );
+  }
+
   render() {
     return (
       <Container>
@@ -33,11 +41,7 @@ export default class DirtComponent extends Component {
             .getDirt()
             .toString()}
         </h1>
-        <h4 className="text-center">
-          {Game.getInstance()
-            .autoPercentage.getTimes(1000 / Game.getInstance().getTickRate(), 0)
-            .toString() + " dirt/second"}
-        </h4>
+        <h4 className="text-center">{this.dirtPerSecond()}</h4>
         <Button
           color="primary"
           size="lg"
