@@ -4,11 +4,24 @@ export default class BigDouble {
   constructor(mantissa, exponent) {
     this.mantissa = mantissa;
     this.exponent = exponent;
+    this.normalize();
+  }
 
+  normalize() {
+    while (this.mantissa < 1 && this.mantissa != 0) {
+      this.exponent -= 1;
+      this.mantissa *= 10;
+    }
     while (this.mantissa >= 10) {
       this.exponent += 1;
-      this.mantissa -= 10;
+      this.mantissa /= 10;
     }
+    return this;
+  }
+
+  set(other) {
+    this.mantissa = other.mantissa;
+    this.exponent = other.exponent;
   }
 
   add(other) {
@@ -16,7 +29,6 @@ export default class BigDouble {
       console.log("[BigDouble | add] Argument must be of type BigDouble");
       return false;
     }
-
     if (
       this.exponent - other.exponent > 0 &&
       this.exponent - other.exponent < precision
@@ -35,12 +47,10 @@ export default class BigDouble {
       this.mantissa += other.mantissa;
     } else {
       console.log("[BigDouble | add] Could not add " + other);
+      return false;
     }
 
-    while (this.mantissa >= 10) {
-      this.exponent += 1;
-      this.mantissa /= 10;
-    }
+    this.normalize();
     return true;
   }
 
@@ -60,12 +70,10 @@ export default class BigDouble {
       console.log(
         "[BigDouble | add] Could not add " + mantissa + "e" + exponent
       );
+      return false;
     }
 
-    while (this.mantissa >= 10) {
-      this.exponent += 1;
-      this.mantissa /= 10;
-    }
+    this.normalize();
     return true;
   }
 
@@ -94,34 +102,33 @@ export default class BigDouble {
       console.log("[BigDouble | subtract] Could not subtract " + other);
     }
 
-    while (this.mantissa < 1 && this.mantissa != 0) {
-      this.exponent -= 1;
-      this.mantissa *= 10;
-    }
+    this.normalize();
     return true;
   }
 
-  times(mult) {
-    this.mantissa *= mult;
-    while (this.mantissa < 1 && this.mantissa != 0) {
-      this.exponent -= 1;
-      this.mantissa *= 10;
-    }
-    while (this.mantissa >= 10) {
-      this.exponent += 1;
-      this.mantissa /= 10;
-    }
+  getTimes(mantissa, exponent) {
+    return new BigDouble(this.mantissa * mantissa, this.exponent + exponent).normalize();
+  }
+
+  times(mantissa, exponent) {
+    this.mantissa *= mantissa;
+    this.exponent += exponent;
+    this.normalize();
+    //console.log("times: " + mantissa + "e" + exponent + " to " + this.mantissa + "e" + this.exponent);
+    return this;
   }
 
   toString() {
     if (this.exponent < 2) {
+      //console.log(this.mantissa + "e" + this.exponent);
       return (this.mantissa * Math.pow(10, this.exponent)).toFixed(2);
-      console.log(this.mantissa + "e" + this.exponent);
     }
-    return Math.floor(this.mantissa * 100) / 100 + "e" + this.exponent;
+    return this.mantissa.toFixed(2) + "e" + this.exponent;
   }
 
   log() {
-    console.log("Man: " + this.mantissa + " Exp:" + this.exponent);
+    console.log(this);
   }
+
+  
 }
