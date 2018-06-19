@@ -53,7 +53,7 @@ export default class Game {
     this.dirt.addCount(amount, 0);
   }
 
-  applyAutoUpgrade(upgrade: AutoUpgrade) {
+  applyAutoUpgrade(upgrade: BaseUpgrade) {
     if (this.dirt.subtract(upgrade.cost)) {
       upgrade.buy();
       this.autoPercentage.set(new BigDouble(0, 0));

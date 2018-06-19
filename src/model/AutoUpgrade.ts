@@ -2,7 +2,7 @@ import BaseUpgrade from "./BaseUpgrade";
 import BigDouble from "./BigDouble";
 
 export default class AutoUpgrade extends BaseUpgrade {
-  constructor(name, cost, percentage) {
+  constructor(name: string, cost: BigDouble, percentage: BigDouble) {
     super(name, cost);
     this.percentage = percentage;
   }
